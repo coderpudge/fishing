@@ -112,9 +112,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 27,
-      "g": 38,
-      "b": 46,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -416,6 +416,8 @@
     "mask": {
       "__id__": 9
     },
-    "float": null
+    "float": {
+      "__id__": 7
+    }
   }
 ]
