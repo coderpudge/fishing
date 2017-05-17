@@ -13,10 +13,13 @@ cc.Class({
     },
 
     onLoad: function () {
+        cc.log("onload");
+        this._mu2 = 25;
+        this._mu4 = 45;
         //当前Y位置
-        this._floatPosY = cc.winSize.height/2 - this.mask.node.height;
+        this._floatPosY = this.mask.node.height;
         // 调校偏移量
-        this._floatOffsetY = -200;
+        this._floatOffsetY = this._mu4;
         //咬饵持续时间 
         this._duration = 2;
         //下移距离
@@ -24,36 +27,70 @@ cc.Class({
         // 浮力速度
         this._upSpeed = 80;
         //下移速度
-        this._downSpeed = 100;
+        this._downSpeed = 50;
         //随机距离
         this._randomDownDistance = Math.random() * this._downDistance;
         // 随机时间
         this._randomDownSpeed = Math.random() * this._downSpeed;
         //随机 停留时间
         this._randomDeltaTime = Math.random() * 1;
-        this.float.y = -400;
-       cc.log("onload");
-        this.floatX = this.float.x;
-    },
-    getBestFloatY:function(){
+        // this.float.y = this._floatPosY + this._floatOffsetY;
         
+        this.eat1();
     },
-    start:function(){
-       
-        var ininMove = cc.moveTo(1,this.float.x,-400);
-        var distanceY = 100;
-        var distanceX = 148;
-        var moveDown = cc.moveBy(this._randomDownDistance/this._randomDownSpeed,cc.p(distanceX, -distanceY) );
-        var moveUp = cc.moveBy(this._randomDownDistance/this._upSpeed, cc.p(distanceX, distanceY) );
-        moveUp = moveDown.reverse();
-        var delta = cc.delayTime(this._randomDeltaTime);
-        var callfunc = cc.callFunc(this.flush,this)
-        var seq = cc.sequence(moveDown,delta,moveUp,delta,callfunc).repeatForever();
-        // var seq2 = cc.sequence(ininMove,seq);
+    initFloat:function(){
+        var initPos = cc.p(this.float.x,  this._floatOffsetY);
+        cc.log("pos",initPos);
+        this.float.x= initPos.x;
+        this.float.y = initPos.y;
+    },
+    eat1:function(){
+        this.float.stopAllActions();
+        this.initFloat();
+        var array = [
+            { x:0, y:-20, duration:2, delta:1, easeInOrOut:2, easeValue:3, speed:10, repeat:1 },
+            { x:0, y:10, duration:2, delta:1, easeInOrOut:2, easeValue:2, speed:5, repeat:1 },
+            { x:0, y:-20, duration:2, delta:1, easeInOrOut:2, easeValue:2, speed:5, repeat:1 },
+            { x:0, y:20, duration:2, delta:1, easeInOrOut:2, easeValue:2, speed:5, repeat:1 },
+            { x:0, y:10, duration:2, delta:1, easeInOrOut:2, easeValue:2, speed:5, repeat:1 },
+        ]
+        var seqArray = [];
+        for (var index = 0; index < array.length; index++) {
+            var anim = array[index];
+            var delta = cc.delayTime(anim.delta);
+            // seqArray.push(moveBy);
+            var moveBy = cc.moveBy(anim.duration, anim.x, anim.y);
+            if(anim.easeInOrOut == 1){
+                moveBy.easing(cc.easeIn(anim.easeValue));
+            }else if(anim.easeInOrOut == 2){
+                moveBy.easing(cc.easeOut(anim.easeValue));
+            }else{
+                
+            }
+            
+            seqArray.push(moveBy);
+            
+        }
+        cc.log(seqArray)
 
+        var seq = cc.sequence(seqArray);
         this.float.runAction(seq);
-         cc.log("start");
     },
+    // start:function(){
+       
+    //     var ininMove = cc.moveTo(1,this.float.x,-400);
+
+    //     var moveDown = cc.moveBy(this._randomDownDistance/this._randomDownSpeed,cc.p(0 , -distanceY) );
+    //     var moveUp = cc.moveBy(this._randomDownDistance/this._upSpeed, cc.p(0 , distanceY) );
+       
+    //     var delta = cc.delayTime(this._randomDeltaTime);
+    //     var callfunc = cc.callFunc(this.flush,this)
+    //     var seq = cc.sequence(moveDown,delta,moveUp,delta,callfunc).repeatForever();
+    //     // var seq2 = cc.sequence(ininMove,seq);
+
+    //     this.float.runAction(seq);
+    //      cc.log("start");
+    // },
     flush:function(){
          cc.log("flush",this.float.x,this.float.y);
         this._randomDownDistance = Math.random() * this._downDistance;
