@@ -58,7 +58,7 @@ cc.Class({
         for (var index = 0; index < array.length; index++) {
             var anim = array[index];
             var delta = cc.delayTime(anim.delta);
-            // seqArray.push(moveBy);
+            seqArray.push(delta);
             var moveBy = cc.moveBy(anim.duration, anim.x, anim.y);
             if(anim.easeInOrOut == 1){
                 //由慢到快 减速
