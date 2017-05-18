@@ -35,7 +35,7 @@ cc.Class({
         //随机 停留时间
         this._randomDeltaTime = Math.random() * 1;
         // this.float.y = this._floatPosY + this._floatOffsetY;
-        
+       
         this.eat1();
     },
     initFloat:function(){
@@ -48,7 +48,7 @@ cc.Class({
         this.float.stopAllActions();
         this.initFloat();
         var array = [
-            { x:0, y:-20, duration:2, delta:1, easeInOrOut:2, easeValue:3, speed:10, repeat:1 },
+            { x:0, y:-20, duration:2, delta:1, easeInOrOut:2, easeValue:5, speed:10, repeat:1 },
             { x:0, y:10, duration:2, delta:1, easeInOrOut:2, easeValue:2, speed:5, repeat:1 },
             { x:0, y:-20, duration:2, delta:1, easeInOrOut:2, easeValue:2, speed:5, repeat:1 },
             { x:0, y:20, duration:2, delta:1, easeInOrOut:2, easeValue:2, speed:5, repeat:1 },
@@ -61,20 +61,45 @@ cc.Class({
             // seqArray.push(moveBy);
             var moveBy = cc.moveBy(anim.duration, anim.x, anim.y);
             if(anim.easeInOrOut == 1){
+                //由慢到快 减速
                 moveBy.easing(cc.easeIn(anim.easeValue));
             }else if(anim.easeInOrOut == 2){
+                // 由快到慢 加速
                 moveBy.easing(cc.easeOut(anim.easeValue));
             }else{
                 
             }
-            
             seqArray.push(moveBy);
-            
         }
         cc.log(seqArray)
 
         var seq = cc.sequence(seqArray);
         this.float.runAction(seq);
+        
+
+    },
+    maskMove:function(){
+         // 移动鱼漂
+        var p1 = cc.p(this.mask.x,this.mask.y);
+        var p2 = cc.p(150,120);
+        var p3 = cc.p(100,200);
+        var p4 = cc.p(-10,230);
+        var bezier = [];
+        bezier.push(p1);
+        bezier.push(p2);
+        bezier.push(p3);
+        bezier.push(p4);
+        var bezierAction = cc.bezierBy(5,bezier);
+        var bezierActionReverse = bezierAction.reverse();
+        var bezierSeq = cc.sequence(bezierAction,bezierActionReverse);
+        this.mask.node.runAction(bezierSeq);
+    },
+    rotateFloat:function(){
+        // 倾斜鱼漂
+        var rotateTo = cc.rotateBy(1,15);
+        var rotateReverse = rotateTo.reverse();
+        var rotateSeq = cc.sequence(rotateTo,rotateReverse);
+        this.float.runAction(rotateSeq);
     },
     // start:function(){
        
