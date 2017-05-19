@@ -9,6 +9,14 @@ cc.Class({
         float:{
             default:null,
             type:cc.Node
+        },
+        light:{
+            default:null,
+            type:cc.Node
+        },
+        weather:{
+            default:null,
+            type:cc.Sprite
         }
     },
 
@@ -35,7 +43,6 @@ cc.Class({
         //随机 停留时间
         this._randomDeltaTime = Math.random() * 1;
         // this.float.y = this._floatPosY + this._floatOffsetY;
-       
         this.eat1();
     },
     initFloat:function(){
@@ -116,6 +123,14 @@ cc.Class({
     //     this.float.runAction(seq);
     //      cc.log("start");
     // },
+    onSliderHEvent (sender, eventType) {
+        var progress = sender.progress;
+        this.light.opacity = progress * 255;
+    },
+    onLightSwitch:function(){
+        var switchs = this.light.getComponent(cc.Mask).enabled ;
+        this.light.getComponent(cc.Mask).enabled = !switchs;
+    },
     flush:function(){
          cc.log("flush",this.float.x,this.float.y);
         this._randomDownDistance = Math.random() * this._downDistance;
