@@ -2,6 +2,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        tips:{
+            default:null,
+            type:cc.Label
+        },
         mask:{
             default:null,
             type: cc.Mask
@@ -17,7 +21,19 @@ cc.Class({
         weather:{
             default:null,
             type:cc.Sprite
-        }
+        },
+        dashBoard:{
+            default:null,
+            type:cc.Node
+        },
+        pointer:{
+            default:null,
+            type:cc.Node
+        },
+        optimal:{
+            default:null,
+            type:cc.Node
+        },
     },
 
     onLoad: function () {
@@ -42,6 +58,8 @@ cc.Class({
         this._randomDownSpeed = Math.random() * this._downSpeed;
         //随机 停留时间
         this._randomDeltaTime = Math.random() * 1;
+        //仪表指针是否旋转状态 0 :未开始  1：开始 2：结束
+        this._rotatePointer = 0;
         // this.float.y = this._floatPosY + this._floatOffsetY;
         this.eat1();
     },
@@ -137,9 +155,49 @@ cc.Class({
         this._randomDownSpeed = Math.random() * this._downSpeed;
         this._randomDeltaTime = Math.random() * 1;
     },
+    rotatePointer(){
+        if(this._rotatePointer == 1){
+            this._rotatePointer = 2;
+            this.pointer.stopAllActions();
+            
+            var delta = cc.delayTime(1);
+            var callback = cc.callFunc(function(target){
+                this.dashBoard.active = false;
+                this._rotatePointer = 0;
+            },this);
+            var seq = cc.sequence(delta,callback);
+            this.dashBoard.runAction(seq);
+            var diff = Math.abs(this.optimal.rotation - this.pointer.rotation)
+            if(diff < 5){
+                this.tips.string = "perfect"
+            }else if(diff < 15){
+                this.tips.string = "good"
+            }else{
+                this.tips.string = "oh ..."
+            }
+            return;
+        }else if(this._rotatePointer == 2){
+            return 
+        }else if(this._rotatePointer == 0){
+            this._rotatePointer = 1;
+            this.pointer.setRotation(-45);
+            var rdm = Math.random()*30*2 - 30;
+            this.optimal.setRotation(rdm);
+            this.tips.string = rdm;
+            this.dashBoard.active = true;
+
+            var time = 2;
+            var rotateNum = 45;
+            var rotate = cc.rotateTo(time,rotateNum);
+            var reverse = cc.rotateTo(time,-rotateNum);
+            var seq = cc.sequence(rotate,reverse).repeatForever();
+            this.pointer.runAction(seq);
+        }
+    },
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
-        cc.log(Math.round(this.float.x),Math.round(this.float.y));
+        // cc.log(Math.round(this.float.x),Math.round(this.float.y));
+        cc.log("dash rotate ",Math.round(this.pointer.rotation));
     },
 
 });
