@@ -16,6 +16,7 @@ cc.Class({
         for(var i = 0; i<this.nodes.length; i++){
             this.nodes[i].on(cc.Node.EventType.TOUCH_END,this.onButtonPress.bind(this));
         }
+        this.target.on('lastframe', this.onLastFrame,   this);
     },
     onButtonPress:function(event){
         this.target.stop();
@@ -32,7 +33,12 @@ cc.Class({
         }
         
     },
-    
+    onLastFrame:function(){
+        cc.log("onLastFrame")
+    },
+    paoganEnd:function(){
+        cc.log("paoganEnd");
+    },
     // called every frame
     update: function (dt) {
 

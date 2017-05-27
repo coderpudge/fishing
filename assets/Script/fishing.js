@@ -34,6 +34,10 @@ cc.Class({
             default:null,
             type:cc.Node
         },
+        hook:{
+            default:null,
+            type:cc.RigidBody
+        }
     },
 
     onLoad: function () {
@@ -194,6 +198,28 @@ cc.Class({
             this.pointer.runAction(seq);
         }
     },
+    
+    horizontalMove:function(){
+        var rdm = Math.random()*5
+        if(this.hook.node.x < -50 || this.hook.node.x > 50){
+            rdm = - rdm;
+        }
+
+        let vec = cc.v2(rdm,0);
+        let velocity =  vec.normalize().mulSelf(100);
+        this.hook.linearVelocity = velocity;
+    },
+    verticalMove:function(){
+        var rdm = Math.random()*10
+        let vec = cc.v2(0,-rdm);
+        let velocity =  vec.normalize().mulSelf(300);
+        this.hook.linearVelocity = velocity;
+    },
+    zhongli:function(){
+        let physicsManager = cc.director.getPhysicsManager();
+        physicsManager.enabled = !physicsManager.enabled;
+    },
+    
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         // cc.log(Math.round(this.float.x),Math.round(this.float.y));

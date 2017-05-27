@@ -46,5 +46,11 @@
       }
     }
   },
-  "events": []
+  "events": [
+    {
+      "frame": 0.5,
+      "func": "laganwuyuEnd",
+      "params": []
+    }
+  ]
 }
