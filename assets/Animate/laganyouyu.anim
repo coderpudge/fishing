@@ -1,0 +1,149 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "laganyouyu",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.18,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {}
+    },
+    "paths": {
+      "yugan_up": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "1030e413-5d9f-4173-8cb1-4e1bef607bd7"
+                }
+              },
+              {
+                "frame": 1,
+                "value": {
+                  "__uuid__": "1030e413-5d9f-4173-8cb1-4e1bef607bd7"
+                }
+              },
+              {
+                "frame": 1.1666666666666667,
+                "value": {
+                  "__uuid__": "89bd1405-e3e8-4689-934d-be749fb05995"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            },
+            {
+              "frame": 1,
+              "value": true
+            }
+          ]
+        }
+      },
+      "line": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "1f336843-36be-4b84-93f1-25399d524ed3"
+                }
+              },
+              {
+                "frame": 0.5,
+                "value": {
+                  "__uuid__": "1f336843-36be-4b84-93f1-25399d524ed3"
+                }
+              },
+              {
+                "frame": 1,
+                "value": {
+                  "__uuid__": "1f336843-36be-4b84-93f1-25399d524ed3"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 12
+            },
+            {
+              "frame": 0.5,
+              "value": 57
+            },
+            {
+              "frame": 1,
+              "value": 14
+            }
+          ],
+          "anchorY": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 0.5,
+              "value": 1
+            },
+            {
+              "frame": 1,
+              "value": 1
+            }
+          ],
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                -179.4,
+                233
+              ]
+            },
+            {
+              "frame": 0.5,
+              "value": [
+                -179.4,
+                233
+              ]
+            },
+            {
+              "frame": 1,
+              "value": [
+                -179.4,
+                233
+              ]
+            }
+          ],
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            },
+            {
+              "frame": 1,
+              "value": true
+            },
+            {
+              "frame": 1.1666666666666667,
+              "value": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}
