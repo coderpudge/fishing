@@ -218,12 +218,26 @@ cc.Class({
     zhongli:function(){
         let physicsManager = cc.director.getPhysicsManager();
         physicsManager.enabled = !physicsManager.enabled;
+        if(!physicsManager.enabled){
+            this.reset();
+        }else{
+            this.hook.node.active = true;
+            this.float.active = true;
+        }
     },
-    
+    reset:function(){
+        this.float.x = -17;
+        this.float.y = 438;
+        this.hook.node.x = this.float.x;
+        this.hook.node.y = this.float.y;
+        this.hook.node.active = false;
+        this.float.active = false;
+    },
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         // cc.log(Math.round(this.float.x),Math.round(this.float.y));
-        cc.log("dash rotate ",Math.round(this.pointer.rotation));
+        // cc.log("dash rotate ",Math.round(this.pointer.rotation));
+        cc.log();
     },
 
 });

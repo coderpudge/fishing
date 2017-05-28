@@ -312,7 +312,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "debug": true,
+    "debug": false,
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -706,8 +706,8 @@
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
+    "_scaleX": 1.2,
+    "_scaleY": 1.2,
     "_position": {
       "__type__": "cc.Vec2",
       "x": -21,
@@ -741,7 +741,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": null
@@ -837,7 +837,7 @@
         "y": 20.5
       }
     ],
-    "_density": 3.5,
+    "_density": 2.5,
     "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0
