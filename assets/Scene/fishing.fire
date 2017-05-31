@@ -610,7 +610,7 @@
         "y": 150
       }
     ],
-    "_density": 0.3,
+    "_density": 0.5,
     "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0
@@ -626,7 +626,7 @@
     "anchor": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -150
+      "y": -138
     },
     "connectedAnchor": {
       "__type__": "cc.Vec2",
@@ -837,7 +837,7 @@
         "y": 20.5
       }
     ],
-    "_density": 3.5,
+    "_density": 1.5,
     "_sensor": false,
     "_friction": 0.2,
     "_restitution": 0
@@ -898,6 +898,18 @@
     "groupIndex": 0
   },
   {
+    "__type__": "c05a7n3V+hKhrriZxWMS66l",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 20
+    },
+    "_enabled": true,
+    "density": 2,
+    "angularDrag": 1,
+    "linearDrag": 1
+  },
+  {
     "__type__": "cc.Widget",
     "_name": "",
     "_objFlags": 0,
@@ -922,18 +934,6 @@
     "_isAbsVerticalCenter": true,
     "_originalWidth": 0,
     "_originalHeight": 0
-  },
-  {
-    "__type__": "c05a7n3V+hKhrriZxWMS66l",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 20
-    },
-    "_enabled": true,
-    "density": 2,
-    "angularDrag": 1,
-    "linearDrag": 1
   },
   {
     "__type__": "cc.Node",
